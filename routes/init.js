@@ -11,9 +11,9 @@ const createQueries = require('./queries/create-table-query');
 const { PLAYER_HAS_STATS, PLAYS_FOR } = require('./queries/create-table-query');
 
 const db = mysql.createConnection({
-    host: 'localhost', 
-    user: 'joseph', 
-    password: 'mysql', 
+    host: 'localhost',
+    user: 'joseph',
+    password: 'mysql',
     database: 'db304'
 });
 
@@ -46,17 +46,17 @@ router.get('/', (req, res) => {
 // Drops all existing tables
 const dropTables = () => {
     db.query(dropQueries.DROP_TEAM);
-    db.query(dropQueries.DROP_COACHES); 
-    db.query(dropQueries.DROP_COACH_CONTRACT_DURATION); 
+    db.query(dropQueries.DROP_COACHES);
+    db.query(dropQueries.DROP_COACH_CONTRACT_DURATION);
     db.query(dropQueries.DROP_HAS);
-    db.query(dropQueries.DROP_HELPS); 
+    db.query(dropQueries.DROP_HELPS);
     db.query(dropQueries.DROP_PLAYERS);
-    db.query(dropQueries.DROP_PLAYER_CONTRACT_DURATION); 
-    db.query(dropQueries.DROP_PLAYER_ENDORSEMENTS_CONTRACTS); 
+    db.query(dropQueries.DROP_PLAYER_CONTRACT_DURATION);
+    db.query(dropQueries.DROP_PLAYER_ENDORSEMENTS_CONTRACTS);
     db.query(dropQueries.DROP_PLAYER_HAS_STATS);
     db.query(dropQueries.DROP_PLAYS_FOR);
     db.query(dropQueries.DROP_ROSTER);
-    db.query(dropQueries.DROP_SPONSORS); 
+    db.query(dropQueries.DROP_SPONSORS);
     db.query(dropQueries.DROP_STAFF);
     db.query(dropQueries.DROP_SUPPORTS);
     db.query(dropQueries.DROP_COACH);
@@ -85,7 +85,7 @@ const createTables = () => {
 const initializeTeams = () => {
     insertTeam("Lakers", "LA", "Buss Family Trust");
     insertTeam("Warriors", "San Francisco", "Joseph S. Lacob, Peter Gruber");
-    insertTeam("Celtics", "Boston", "Boston Basketball Partners"); 
+    insertTeam("Celtics", "Boston", "Boston Basketball Partners");
     insertTeam("Hawks", "Atlanta", "Antony Ressler");
     insertTeam("Bulls", "Chicago", "Jerry Reinsdorf");
 }
@@ -95,8 +95,8 @@ const insertTeam = (teamName, city, owner) => {
 }
 
 const initializeStaff = () => {
-    insertStaff(3123, "Iverson"); 
-    insertStaff(3323, "Webber"); 
+    insertStaff(3123, "Iverson");
+    insertStaff(3323, "Webber");
     insertStaff(4423, "Brooks");
     insertStaff(5123, "Anderson");
     insertStaff(6312, "Chris");
@@ -108,10 +108,10 @@ const insertStaff = (staffId, name) => {
 }
 
 const initializePlayers = () => {
-    insertPlayer(123, "LeBron James", 23, 250, 6.9); 
-    insertPlayer(323, "James Harden", 13, 220, 6.5); 
-    insertPlayer(423, "Luka Doncic", 77, 230, 6.7); 
-    insertPlayer(523, "Stephan Curry", 30, 185, 6.3); 
+    insertPlayer(123, "LeBron James", 23, 250, 6.9);
+    insertPlayer(323, "James Harden", 13, 220, 6.5);
+    insertPlayer(423, "Luka Doncic", 77, 230, 6.7);
+    insertPlayer(523, "Stephan Curry", 30, 185, 6.3);
     insertPlayer(3123, "Ryan Arcidiacono", 51, 195, 6.3);
 }
 
@@ -121,10 +121,10 @@ const insertPlayer = (playerId, p_name, number, weight, height) => {
 }
 
 const initializeRoster = () => {
-    insertRoster("Lakers", 25); 
-    insertRoster("Rockets", 23); 
-    insertRoster("Mavericks", 22); 
-    insertRoster("Warriors", 21); 
+    insertRoster("Lakers", 25);
+    insertRoster("Rockets", 23);
+    insertRoster("Mavericks", 22);
+    insertRoster("Warriors", 21);
     insertRoster("Bulls", 22);
 }
 
@@ -134,11 +134,11 @@ const insertRoster = (teamName, numberOfPlayers) => {
 }
 
 const initializeSponsors = () => {
-    insertSponsor("Mercedes Benz", "Lakers", "LA", 150000.1); 
-    insertSponsor("BMW", "Warriors", "San Francisco", 123000.1); 
-    insertSponsor("Lexus", "Celtics", "Boston", 139000.1); 
-    insertSponsor("Audi", "Hawks", "Atlanta", 190000.1); 
-    insertSponsor("Toyota", "Bulls", "Chicago", 168000.1); 
+    insertSponsor("Mercedes Benz", "Lakers", "LA", 150000.1);
+    insertSponsor("BMW", "Warriors", "San Francisco", 123000.1);
+    insertSponsor("Lexus", "Celtics", "Boston", 139000.1);
+    insertSponsor("Audi", "Hawks", "Atlanta", 190000.1);
+    insertSponsor("Toyota", "Bulls", "Chicago", 168000.1);
 }
 const insertSponsor = (name, teamName, city, amount) => {
     let sql = `INSERT INTO Sponsors (name, teamName, city, amount) VALUES ('${name}', '${teamName}', '${city}', '${amount}')`;
@@ -146,10 +146,10 @@ const insertSponsor = (name, teamName, city, amount) => {
 }
 
 const initializeHelps = () => {
-    insertHelps("LA", "Lakers", 3123, 100); 
-    insertHelps("San Francisco", "Warriors", 3323, 200); 
-    insertHelps("Boston", "Celtics", 4423, 300); 
-    insertHelps("Atlanta", "Hawks", 5123, 400); 
+    insertHelps("LA", "Lakers", 3123, 100);
+    insertHelps("San Francisco", "Warriors", 3323, 200);
+    insertHelps("Boston", "Celtics", 4423, 300);
+    insertHelps("Atlanta", "Hawks", 5123, 400);
     insertHelps("Chicago", "Bulls", "6312", 500);
 }
 
@@ -159,10 +159,10 @@ const insertHelps = (city, teamName, staffId, salary) => {
 }
 
 const initializeCoach = () => {
-    insertCoach(123, "Frank Vogel"); 
-    insertCoach(323, "Mike D Antoni"); 
-    insertCoach(423, "Rick Carlisle"); 
-    insertCoach(523, "Steve Kerr"); 
+    insertCoach(123, "Frank Vogel");
+    insertCoach(323, "Mike D Antoni");
+    insertCoach(423, "Rick Carlisle");
+    insertCoach(523, "Steve Kerr");
     insertCoach(3123, "Billy Donovan");
 }
 
