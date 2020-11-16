@@ -5,9 +5,9 @@ const router = express.Router();
 const mysql = require('mysql');
 
 const db = mysql.createConnection({
-    host: 'localhost', 
-    user: 'joseph', 
-    password: 'mysql', 
+    host: 'localhost',
+    user: 'joseph',
+    password: 'mysql',
     database: 'db304'
 });
 
@@ -54,17 +54,17 @@ router.post('/', (req, res) => {
 // Drops all existing tables
 const dropTables = () => {
     db.query(dropQueries.DROP_TEAM);
-    db.query(dropQueries.DROP_COACHES); 
-    db.query(dropQueries.DROP_COACH_CONTRACT_DURATION); 
+    db.query(dropQueries.DROP_COACHES);
+    db.query(dropQueries.DROP_COACH_CONTRACT_DURATION);
     db.query(dropQueries.DROP_HAS);
-    db.query(dropQueries.DROP_HELPS); 
+    db.query(dropQueries.DROP_HELPS);
     db.query(dropQueries.DROP_PLAYERS);
-    db.query(dropQueries.DROP_PLAYER_CONTRACT_DURATION); 
-    db.query(dropQueries.DROP_PLAYER_ENDORSEMENTS_CONTRACTS); 
+    db.query(dropQueries.DROP_PLAYER_CONTRACT_DURATION);
+    db.query(dropQueries.DROP_PLAYER_ENDORSEMENTS_CONTRACTS);
     db.query(dropQueries.DROP_PLAYER_HAS_STATS);
     db.query(dropQueries.DROP_PLAYS_FOR);
     db.query(dropQueries.DROP_ROSTER);
-    db.query(dropQueries.DROP_SPONSORS); 
+    db.query(dropQueries.DROP_SPONSORS);
     db.query(dropQueries.DROP_STAFF);
     db.query(dropQueries.DROP_SUPPORTS);
     db.query(dropQueries.DROP_COACH);
@@ -116,8 +116,8 @@ const insertTeam = (teamName, city, owner) => {
 }
 
 const initializeStaff = () => {
-    insertStaff(3123, "Iverson"); 
-    insertStaff(3323, "Webber"); 
+    insertStaff(3123, "Iverson");
+    insertStaff(3323, "Webber");
     insertStaff(4423, "Brooks");
     insertStaff(5123, "Anderson");
     insertStaff(6312, "Chris");
@@ -180,10 +180,10 @@ const insertHelps = (city, teamName, staffId, salary) => {
 }
 
 const initializeCoach = () => {
-    insertCoach(123, "Frank Vogel"); 
-    insertCoach(323, "Mike D Antoni"); 
-    insertCoach(423, "Rick Carlisle"); 
-    insertCoach(523, "Steve Kerr"); 
+    insertCoach(123, "Frank Vogel");
+    insertCoach(323, "Mike D Antoni");
+    insertCoach(423, "Rick Carlisle");
+    insertCoach(523, "Steve Kerr");
     insertCoach(3123, "Billy Donovan");
 }
 
