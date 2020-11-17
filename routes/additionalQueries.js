@@ -22,7 +22,7 @@ const initDb = async () => {
 // @params  JSON with season 
 
 router.get("/playerStats", async(req, res) => {
-    const {season} = req.body; 
+    const season = req.query.season; 
     const sql = `SELECT P.p_name, S.season, S.PPG, S.APG, S.FG FROM Players P, Player_Has_Statistics S WHERE P.playerId = S.playerId AND S.season = '${season}'`;
     await executeSql(sql, req, res);
 });
@@ -34,7 +34,7 @@ router.get("/playerStats", async(req, res) => {
 //          in request body
 // @params  JSON with teamName
 router.get("/playersOfTeam", async(req, res) => {
-    const {teamName} = req.body; 
+    const teamName = req.query.teamName;
     const sql = `SELECT P.p_name, P.number, P.weight, P.height, PF.teamName FROM Players P, Plays_For PF WHERE P.playerId = PF.playerId AND PF.teamName = "${teamName}"`; 
     await executeSql(sql, req, res);
 
