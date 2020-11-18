@@ -5,9 +5,9 @@ const router = express.Router();
 const mysql = require('mysql');
 
 const db = mysql.createConnection({
-    host: 'localhost', 
-    user: 'joseph', 
-    password: 'mysql', 
+    host: 'localhost',
+    user: 'root',
+    password: 'Mysql123!',
     database: 'db304'
 });
 
@@ -25,7 +25,7 @@ const dropQueries = require('./queries/drop-queries');
 const createQueries = require('./queries/create-table-query');
 const { PLAYER_HAS_STATS, PLAYS_FOR } = require('./queries/create-table-query');
 
-// @route   POST api/init/ 
+// @route   POST api/init/
 // @desc    Re-initializes all tables to default values
 
 router.post('/', (req, res) => {
@@ -54,17 +54,17 @@ router.post('/', (req, res) => {
 // Drops all existing tables
 const dropTables = () => {
     db.query(dropQueries.DROP_TEAM);
-    db.query(dropQueries.DROP_COACHES); 
-    db.query(dropQueries.DROP_COACH_CONTRACT_DURATION); 
+    db.query(dropQueries.DROP_COACHES);
+    db.query(dropQueries.DROP_COACH_CONTRACT_DURATION);
     db.query(dropQueries.DROP_HAS);
-    db.query(dropQueries.DROP_HELPS); 
+    db.query(dropQueries.DROP_HELPS);
     db.query(dropQueries.DROP_PLAYERS);
-    db.query(dropQueries.DROP_PLAYER_CONTRACT_DURATION); 
-    db.query(dropQueries.DROP_PLAYER_ENDORSEMENTS_CONTRACTS); 
+    db.query(dropQueries.DROP_PLAYER_CONTRACT_DURATION);
+    db.query(dropQueries.DROP_PLAYER_ENDORSEMENTS_CONTRACTS);
     db.query(dropQueries.DROP_PLAYER_HAS_STATS);
     db.query(dropQueries.DROP_PLAYS_FOR);
     db.query(dropQueries.DROP_ROSTER);
-    db.query(dropQueries.DROP_SPONSORS); 
+    db.query(dropQueries.DROP_SPONSORS);
     db.query(dropQueries.DROP_STAFF);
     db.query(dropQueries.DROP_SUPPORTS);
     db.query(dropQueries.DROP_COACH);
@@ -106,7 +106,7 @@ const insertHas = (t_teamName, city, r_teamName) => {
 const initializeTeams = () => {
     insertTeam("Lakers", "LA", "Buss Family Trust");
     insertTeam("Warriors", "San Francisco", "Joseph S. Lacob, Peter Gruber");
-    insertTeam("Rockets", "Houston", "Tilman Fertitta"); 
+    insertTeam("Rockets", "Houston", "Tilman Fertitta");
     insertTeam("Hawks", "Atlanta", "Antony Ressler");
     insertTeam("Bulls", "Chicago", "Jerry Reinsdorf");
 }
@@ -116,8 +116,8 @@ const insertTeam = (teamName, city, owner) => {
 }
 
 const initializeStaff = () => {
-    insertStaff(3123, "Iverson"); 
-    insertStaff(3323, "Webber"); 
+    insertStaff(3123, "Iverson");
+    insertStaff(3323, "Webber");
     insertStaff(4423, "Brooks");
     insertStaff(5123, "Anderson");
     insertStaff(6312, "Chris");
@@ -129,10 +129,10 @@ const insertStaff = (staffId, name) => {
 }
 
 const initializePlayers = () => {
-    insertPlayer(123, "LeBron James", 23, 250, 6.9); 
-    insertPlayer(323, "James Harden", 13, 220, 6.5); 
-    insertPlayer(423, "Jeff Teague", 0, 195, 6.3); 
-    insertPlayer(523, "Stephan Curry", 30, 185, 6.3); 
+    insertPlayer(123, "LeBron James", 23, 250, 6.9);
+    insertPlayer(323, "James Harden", 13, 220, 6.5);
+    insertPlayer(423, "Jeff Teague", 0, 195, 6.3);
+    insertPlayer(523, "Stephan Curry", 30, 185, 6.3);
     insertPlayer(3123, "Ryan Arcidiacono", 51, 195, 6.3);
 }
 
@@ -142,10 +142,10 @@ const insertPlayer = (playerId, p_name, number, weight, height) => {
 }
 
 const initializeRoster = () => {
-    insertRoster("Lakers", 25); 
-    insertRoster("Rockets", 23); 
-    insertRoster("Hawks", 22); 
-    insertRoster("Warriors", 21); 
+    insertRoster("Lakers", 25);
+    insertRoster("Rockets", 23);
+    insertRoster("Hawks", 22);
+    insertRoster("Warriors", 21);
     insertRoster("Bulls", 22);
 }
 
@@ -155,11 +155,11 @@ const insertRoster = (teamName, numberOfPlayers) => {
 }
 
 const initializeSponsors = () => {
-    insertSponsor("Mercedes Benz", "Lakers", "LA", 150000.1); 
-    insertSponsor("BMW", "Warriors", "San Francisco", 123000.1); 
-    insertSponsor("Lexus", "Rockets", "Houston", 139000.1); 
-    insertSponsor("Audi", "Hawks", "Atlanta", 190000.1); 
-    insertSponsor("Toyota", "Bulls", "Chicago", 168000.1); 
+    insertSponsor("Mercedes Benz", "Lakers", "LA", 150000.1);
+    insertSponsor("BMW", "Warriors", "San Francisco", 123000.1);
+    insertSponsor("Lexus", "Rockets", "Houston", 139000.1);
+    insertSponsor("Audi", "Hawks", "Atlanta", 190000.1);
+    insertSponsor("Toyota", "Bulls", "Chicago", 168000.1);
 }
 const insertSponsor = (name, teamName, city, amount) => {
     let sql = `INSERT INTO Sponsors (name, teamName, city, amount) VALUES ('${name}', '${teamName}', '${city}', '${amount}')`;
@@ -167,10 +167,10 @@ const insertSponsor = (name, teamName, city, amount) => {
 }
 
 const initializeHelps = () => {
-    insertHelps("LA", "Lakers", 3123, 100); 
-    insertHelps("San Francisco", "Warriors", 3323, 200); 
-    insertHelps("Houston", "Rockets", 4423, 300); 
-    insertHelps("Atlanta", "Hawks", 5123, 400); 
+    insertHelps("LA", "Lakers", 3123, 100);
+    insertHelps("San Francisco", "Warriors", 3323, 200);
+    insertHelps("Houston", "Rockets", 4423, 300);
+    insertHelps("Atlanta", "Hawks", 5123, 400);
     insertHelps("Chicago", "Bulls", "6312", 500);
 }
 
@@ -180,11 +180,12 @@ const insertHelps = (city, teamName, staffId, salary) => {
 }
 
 const initializeCoach = () => {
-    insertCoach(123, "Frank Vogel"); 
-    insertCoach(323, "Mike D Antoni"); 
-    insertCoach(423, "Rick Carlisle"); 
-    insertCoach(523, "Steve Kerr"); 
+    insertCoach(123, "Frank Vogel");
+    insertCoach(323, "Mike D Antoni");
+    insertCoach(423, "Rick Carlisle");
+    insertCoach(523, "Steve Kerr");
     insertCoach(3123, "Billy Donovan");
+    insertCoach(623, "Jimmy Kimmel");
 }
 
 const insertCoach = (coachId, name) => {
@@ -197,6 +198,7 @@ const initializeCoachContractDuration = () => {
     insertCoachContractDuration("2020-01-04", "2021-01-04", "01-00-01");
     insertCoachContractDuration("2020-01-05", "2021-01-05", "01-00-01");
     insertCoachContractDuration("2020-01-06", "2021-01-06", "01-00-01");
+    insertCoachContractDuration("2020-01-07", "2021-01-07", "01-00-01");
 }
 const insertCoachContractDuration = (startDate, endDate, duration) => {
     let sql = `INSERT INTO Coach_Contract_Duration (startDate, endDate, duration) VALUES('${startDate}', '${endDate}', '${duration}')`;
@@ -222,6 +224,7 @@ const initializeCoaches = () => {
     insertCoaches(423, "Hawks", 120, "2020-01-04", "2021-01-04");
     insertCoaches(523, "Warriors", 222, "2020-01-05", "2021-01-05");
     insertCoaches(3123, "Bulls", 123, "2020-01-06", "2021-01-06");
+    insertCoaches(623, "Lakers", 233, "2020-01-07", "2021-01-07");
 }
 
 const insertCoaches = (coachId, teamName, salary, startDate, endDate) => {
@@ -284,5 +287,3 @@ const insertSupports = (playerId, staffId) => {
 
 
 module.exports = router;
-
-
