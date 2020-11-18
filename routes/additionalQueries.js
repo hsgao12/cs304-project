@@ -90,7 +90,7 @@ router.get("/mutualCoach", async(req, res) => {
     console.log(coach2);
     const sql = `SELECT DISTINCT R.teamName
                  FROM Rosters R
-                 WHERE NOT EXISTS (SELECT C.coachId
+                 WHERE NOT EXISTS (SELECT DISTINCT C.coachId
                                    FROM Coaches C
                                    WHERE C.coachId IN(SELECT C2.coachId
                                      FROM Coach C2
