@@ -7,8 +7,8 @@ const mysql = require('mysql2/promise');
 const initDb = async () => {
     const db = mysql.createConnection({
         host: 'localhost', 
-        user: 'joseph', 
-        password: 'mysql', 
+        user: 'joseph',
+        password: 'mysql',
         database: 'db304'
     });
     return db;
@@ -39,8 +39,11 @@ router.post("/create", async (req, res) => {
 //          player stats associated with this player
 router.delete("/delete/:id", async (req, res) => {
     const db = await initDb();
-    const id = req.params.id;
+    let id = req.params.id;
+    id = parseInt(id.slice(1));
+    console.log(':id is ', id);
     const [results, fields] = await db.execute(`SELECT * FROM Players P WHERE P.playerId = ${id}`);
+    
     if (results.length === 0) {
         return res.status(404).json({msg: 'Player not found'});
     }
@@ -60,6 +63,8 @@ router.put("/update", async (req, res) => {
     const {playerId, teamName, startDate, endDate, salary} = req.body;
     const db = await initDb();
     console.log(req.body);
+    //playerId = parseInt(playerId);
+    console.log(playerId);
 
     // Check if player exists
     let check = `SELECT * FROM Players P WHERE P.playerId = ${playerId}`; 
