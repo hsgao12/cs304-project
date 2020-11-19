@@ -7,8 +7,8 @@ const mysql = require('mysql2/promise');
 const initDb = async () => {
     const db = mysql.createConnection({
         host: 'localhost', 
-        user: 'joseph', 
-        password: 'mysql', 
+        user: 'joseph',
+        password: 'mysql',
         database: 'db304'
     });
     return db;
@@ -37,7 +37,7 @@ router.get("/playersOfTeam", async(req, res) => {
     const teamName = req.query.teamName;
     const sql = `SELECT P.p_name, P.number, P.weight, P.height, PF.teamName FROM Players P, Plays_For PF WHERE P.playerId = PF.playerId AND PF.teamName = "${teamName}"`; 
     await executeSql(sql, req, res);
-
+    
 });
 
 // Aggregation with Group By
