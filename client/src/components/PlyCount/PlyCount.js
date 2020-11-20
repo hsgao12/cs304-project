@@ -10,10 +10,6 @@ class PlyCount extends Component {
         };
     }
 
-    // onTeamNameChange = (event) => {
-    //     this.setState({ teamName: event.target.value });
-    // }
-
     OnGetPlyOfTeam = async () => {        
         
         let response = await sqlHandler('get', '/api/queries/teamPlayerCount')

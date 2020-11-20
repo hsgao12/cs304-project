@@ -6,6 +6,8 @@ const Navigation = ({ onRouteChange }) => {
             <p onClick={() => onRouteChange('home')} className='f3 link dim black underline pa3 pointer'>Home</p>
             <p onClick={() => onRouteChange('players')} className='f3 link dim black underline pa3 pointer'>Players</p>
             <p onClick={() => onRouteChange('teams')} className='f3 link dim black underline pa3 pointer'>Teams</p>
+            <p onClick={() => onRouteChange('stats')} className='f3 link dim black underline pa3 pointer'>Stats</p>
+            <p onClick={() => onRouteChange('coaches')} className='f3 link dim black underline pa3 pointer'>Coaches</p>
             <p onClick={() => onRouteChange('about')} className='f3 link dim black underline pa3 pointer'>About</p>
         </nav>
     )

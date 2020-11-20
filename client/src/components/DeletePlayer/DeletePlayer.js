@@ -30,7 +30,7 @@ class DeletePlayer extends Component {
                 </div>
                 
                 <button className='mt3' onClick={() => sqlHandler('delete', `/api/crud/delete/:${parseInt(this.state.playerId)}`)}>Delete</button>
-                
+            
             </div>
         )
     }
