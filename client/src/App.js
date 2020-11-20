@@ -12,6 +12,9 @@ import AddNewPlayer from './components/AddNewPlayer/AddNewPlayer';
 import DeletePlayer from './components/DeletePlayer/DeletePlayer';
 import UpdatePlayer from './components/UpdatePlayer/UpdatePlayer';
 import PlyOfTeam from './components/PlyCount/PlyCount';
+import FindPlayersByTeam from './components/FindPlayersByTeam/findPlayersByTeam'; 
+
+import Stats from './routes/stats/stats';
 
 const initialState = {
   route: 'home', //show different pages,
@@ -62,13 +65,6 @@ class App extends Component {
           <div>
             <div className='fl w-50 ba br3 b--black bw1 vh-50 ml2'>
               <QueryResult label='Team search' onGetResult={() => this.onQueryChange('SELECT * FROM Team')} />
-              {/* {this.state.queryResult.map((res) => {
-                return (
-                  <div className='tl'>
-                    <li >{JSON.stringify(res)}</li>
-                  </div>
-                )
-              })} */}
               {this.state.queryResult.length !== 0 ?
                 <Table className='ml2' dataSource={this.state.queryResult} columns={[
                   {
@@ -95,6 +91,9 @@ class App extends Component {
 
             <div>
                 <PlyOfTeam />
+            </div>
+            <div>
+              <FindPlayersByTeam/>
             </div>
           </div>
         );
@@ -213,6 +212,8 @@ class App extends Component {
             </div>
           </div>
         );
+      case 'stats': 
+          return <Stats/>;
       case 'about':
         return <div className='f3'>CPSC304 Project implemented by Joseph Gao, Branden Tam, and Wei Zheng.</div>;
       default:
