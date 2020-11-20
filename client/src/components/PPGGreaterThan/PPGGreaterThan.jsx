@@ -28,6 +28,7 @@ class PPGGreaterThan extends Component {
     handleSubmit = async (event) => {
         const res = await sqlHandler('get', `/api/queries/statsOverPPG?season=${this.state.season}&minPPG=${this.state.ppg}`, {}); 
         const stats = res.data;
+        //console.log(stats);
         this.setState({stats: stats}); 
         if (this.state.stats.length !== 0) {
             this.setState({hasStats: true});
@@ -42,7 +43,7 @@ class PPGGreaterThan extends Component {
             {title: 'Name', dataIndex: 'p_name', key: 'p_name'}, 
             {title: 'Season', dataIndex: 'season', key: 'season'},  
             {title: 'PPG', dataIndex: 'PPG', key: 'PPG'}, 
-            {title: 'Average FG', dataIndex: 'Avg(S.FG)', key: 'Avg(S.FG)'}];
+            {title: 'FG', dataIndex: 'FG', key: 'FG'}];
         return (
         <div className='fl w-40 ba br3 b--black bw1 ml5 mt2'>
                 <div><h3>Get Player Stats WIth PPG Over Min</h3></div>
