@@ -7,8 +7,8 @@ const mysql = require('mysql2/promise');
 const initDb = async () => {
     const db = mysql.createConnection({
         host: 'localhost', 
-        user: 'joseph',
-        password: 'mysql',
+        user: 'root',
+        password: 'Abcd1234!',
         database: 'db304'
     });
     return db;
@@ -24,6 +24,17 @@ const initDb = async () => {
 router.get("/playerStats", async(req, res) => {
     const season = req.query.season; 
     const sql = `SELECT P.p_name, S.season, S.PPG, S.APG, S.FG FROM Players P, Player_Has_Statistics S WHERE P.playerId = S.playerId AND S.season = '${season}'`;
+    await executeSql(sql, req, res);
+});
+
+// @route   GET api/queries/checkTeamExistence
+// @desc    Get the result for specific teamName and city
+//          to help check the existence of a team 
+// @params  JSON with season 
+
+router.get("/checkTeamExistence", async(req, res) => {
+    const { teamName, city } = req.query;    
+    const sql = `SELECT * FROM Team WHERE teamName = '${teamName}' AND city = '${city}'`;
     await executeSql(sql, req, res);
 });
 
@@ -70,7 +81,9 @@ const executeSql = async (sql, req, res) => {
 
 router.get("/statsOverPPG", async(req, res) => {
     const {season, minPPG} = req.query;
-    const sql = `SELECT S.season, P.p_name, Avg(S.FG), S.PPG FROM Players P, Player_Has_Statistics S WHERE P.playerId = S.playerId AND S.season = '${season}' GROUP BY P.p_name HAVING S.PPG>${minPPG}`;
+    // const sql = `SELECT S.season, P.p_name, Avg(S.FG), S.PPG FROM Players P, Player_Has_Statistics S WHERE P.playerId = S.playerId AND S.season = '${season}' GROUP BY P.p_name HAVING S.PPG>${minPPG}`;
+    const sql = `SELECT S.season, P.p_name, S.FG, S.PPG FROM Players P, Player_Has_Statistics S WHERE P.playerId = S.playerId AND S.season = '${season}' AND S.PPG>${minPPG}`;
+    //console.log('starppg3',sql);
     await executeSql(sql, req, res);
 });
 
