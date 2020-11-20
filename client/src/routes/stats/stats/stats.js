@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import StatsBySeason from '../../components/StatsBySeason/StatsBySeason';
-import PPGGreaterThan from '../../components/PPGGreaterThan/PPGGreaterThan';
+import StatsBySeason from '../../../components/StatsBySeason/StatsBySeason';
+import PPGGreaterThan from '../../../components/PPGGreaterThan/PPGGreaterThan';
+import HighestPPG from '../../../components/HighestPPG/HighestPPG';
 
 class Stats extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class Stats extends Component {
             <div>
                 <StatsBySeason/>
                 <PPGGreaterThan/>
+                <HighestPPG/>
             </div>
         )
     }

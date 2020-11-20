@@ -185,6 +185,7 @@ const initializeCoach = () => {
     insertCoach(423, "Rick Carlisle");
     insertCoach(523, "Steve Kerr");
     insertCoach(3123, "Billy Donovan");
+    insertCoach(4123, "Miles Simon"); 
 }
 
 const insertCoach = (coachId, name) => {
@@ -197,6 +198,7 @@ const initializeCoachContractDuration = () => {
     insertCoachContractDuration("2020-01-04", "2021-01-04", "01-00-01");
     insertCoachContractDuration("2020-01-05", "2021-01-05", "01-00-01");
     insertCoachContractDuration("2020-01-06", "2021-01-06", "01-00-01");
+    insertCoachContractDuration("2020-01-07", "2021-01-07", "01-00-01");
 }
 const insertCoachContractDuration = (startDate, endDate, duration) => {
     let sql = `INSERT INTO Coach_Contract_Duration (startDate, endDate, duration) VALUES('${startDate}', '${endDate}', '${duration}')`;
@@ -222,6 +224,7 @@ const initializeCoaches = () => {
     insertCoaches(423, "Hawks", 120, "2020-01-04", "2021-01-04");
     insertCoaches(523, "Warriors", 222, "2020-01-05", "2021-01-05");
     insertCoaches(3123, "Bulls", 123, "2020-01-06", "2021-01-06");
+    insertCoaches(4123, "Lakers", 95, "2020-01-07", "2021-01-07");
 }
 
 const insertCoaches = (coachId, teamName, salary, startDate, endDate) => {

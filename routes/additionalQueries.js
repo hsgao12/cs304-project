@@ -80,9 +80,9 @@ router.get("/statsOverPPG", async(req, res) => {
 //@desc Find the name and PPG of the player with the highest PPG in a season
 //@params JSON with season
 router.get("/highestPPGinSeason", async(req, res) => {
-    const {season} = req.body;
+    const {season} = req.query;
     console.log({season});
-    const sql = `SELECT P.p_name, Max(S.PPG) FROM Players P, Player_Has_Statistics S WHERE P.playerId = S.playerId AND S.season = '${season}' GROUP BY P.p_name HAVING
+    const sql = `SELECT season, P.p_name, Max(S.PPG) FROM Players P, Player_Has_Statistics S WHERE P.playerId = S.playerId AND S.season = '${season}' GROUP BY P.p_name HAVING
     Max(S.PPG) >= ALL ( SELECT Max(S2.PPG) FROM Player_Has_Statistics S2 WHERE S2.season = '${season}')`;
     await executeSql(sql, req, res);
 });
@@ -94,25 +94,40 @@ router.get("/highestPPGinSeason", async(req, res) => {
 //@desc Find the name of every team that is coached by both coach1 and coach2
 //@params JSON with id of 2 coaches, coach1 and coach2
 router.get("/mutualCoach", async(req, res) => {
-    const t = req.body;
-    console.log({t});
-    const coach1 = t.coach1;
+    const coach1 = req.query.coach1;
+    const coach2 = req.query.coach2;
     console.log(coach1);
-    const coach2 = t.coach2;
     console.log(coach2);
+    let check1 = await coachCheck(coach1);
+    if (!check1) {
+        return res.status(200).send([]);
+    }
+    let check2 = await coachCheck(coach2);
+    if (!check2) {
+        return res.status(200).send([]);
+    }
     const sql = `SELECT DISTINCT R.teamName
                  FROM Rosters R
                  WHERE NOT EXISTS (SELECT DISTINCT C.coachId
                                    FROM Coaches C
                                    WHERE C.coachId IN(SELECT C2.coachId
                                      FROM Coach C2
-                                     WHERE C2.coachId = '${coach1}' OR C2.coachId = '${coach2}')
+                                     WHERE C2.coachId = ${coach1} OR C2.coachId = ${coach2})
                                    AND NOT EXISTS(
                                       SELECT C1.coachId
                                       FROM Coaches C1
                                       WHERE C.coachId = C1.coachId AND C1.teamName = R.teamName))`;
     await executeSql(sql, req, res);
 });
+
+const coachCheck = async (coachId) => {
+    let test = `SELECT * FROM Coach C WHERE C.coachId = ${coachId}`; 
+    console.log(test);
+    const db = await initDb(); 
+    let [check, fields] = await db.execute(test); 
+    console.log(check);
+    return check.length !== 0; 
+}
 
 
 

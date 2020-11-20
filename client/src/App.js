@@ -14,7 +14,8 @@ import UpdatePlayer from './components/UpdatePlayer/UpdatePlayer';
 import PlyOfTeam from './components/PlyCount/PlyCount';
 import FindPlayersByTeam from './components/FindPlayersByTeam/findPlayersByTeam'; 
 
-import Stats from './routes/stats/stats';
+import Stats from './routes/stats/stats/stats';
+import Coach from './routes/coach/coach';
 
 const initialState = {
   route: 'home', //show different pages,
@@ -214,6 +215,8 @@ class App extends Component {
         );
       case 'stats': 
           return <Stats/>;
+      case 'coaches': 
+          return <Coach/>
       case 'about':
         return <div className='f3'>CPSC304 Project implemented by Joseph Gao, Branden Tam, and Wei Zheng.</div>;
       default:
