@@ -7,8 +7,8 @@ const mysql = require('mysql2/promise');
 const initDb = async () => {
     const db = mysql.createConnection({
         host: 'localhost', 
-        user: 'root',
-        password: 'Abcd1234!',
+        user: 'joseph',
+        password: 'mysql',
         database: 'db304'
     });
     return db;
